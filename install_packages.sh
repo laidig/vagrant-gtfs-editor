@@ -1,4 +1,4 @@
-sudo apt-get install -y openjdk-7-jre unzip git
+sudo apt-get install -y openjdk-7-jre-headless unzip git
 
 # add a swap partition just in case
 # credit to http://jeqo.github.io/blog/devops/vagrant-quickstart/

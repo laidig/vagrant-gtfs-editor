@@ -1,6 +1,18 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+required_plugins = %w(vagrant-triggers)
+
+plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
+if not plugins_to_install.empty?
+  puts "installing: #{plugins_to_install.join(' ')}"
+  if system "vagrant plugin install #{plugins_to_install.join(' ')}"
+    exec "vagrant #{ARGV.join(' ')}"
+  else
+    abort "Installation of one or more plugins failed"
+  end
+end
+
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -25,7 +37,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "install_packages.sh"
   config.vm.provision "shell", path: "setup_gtfs_editor.sh", privileged: false
-   
-  config.vm.provision "shell", path: "run_gtfs_editor.sh", run: "always", privileged: false
+  config.vm.provision "file", source: "./play.upstart.conf", destination: "/etc/init/play.conf"  
+#  config.vm.provision "shell", path: "run_gtfs_editor.sh", run: "always", privileged: false
+
+  config.trigger.after :up do
+    run "open http://localhost:9000"
+  end
 
 end
