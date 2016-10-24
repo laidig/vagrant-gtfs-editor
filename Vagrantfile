@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
   #   # Customize the amount of memory on the VM:
      vb.memory = "2048"
    end
-  
+
   config.vm.provision "fix-no-tty", type: "shell" do |s|
     s.privileged = false
     s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
@@ -37,7 +37,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "install_packages.sh"
   config.vm.provision "shell", path: "setup_gtfs_editor.sh", privileged: false
-  config.vm.provision "file", source: "./play.upstart.conf", destination: "/etc/init/play.conf"  
+  config.vm.provision "file", source: "./play.upstart.conf", destination: "/home/vagrant/play.upstart.conf"
+  config.vm.provision "shell",
+    inline: "sudo mv -f /home/vagrant/play.upstart.conf /etc/init/play.conf"
 #  config.vm.provision "shell", path: "run_gtfs_editor.sh", run: "always", privileged: false
 
   config.trigger.after :up do
