@@ -12,7 +12,7 @@ This Vagrantfile:
 
 Usage:
 
-1. Install [vagrant](https://www.vagrantup.com/docs/getting-started/)
+1. Install [vagrant](https://www.vagrantup.com/docs/getting-started/) and [Virtualbox](https://www.virtualbox.org/)
 1. Clone this repository `git clone https://github.com/laidig/vagrant-gtfs-editor/`
 2. Change into the  repository directory `cd vagrant-gtfs-editor`
 3. Run `vagrant up`
