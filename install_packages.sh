@@ -1,3 +1,4 @@
+sudo apt-get update
 sudo apt-get install -y openjdk-7-jre-headless unzip git
 
 # add a swap partition just in case
