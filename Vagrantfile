@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "./play.upstart.conf", destination: "/home/vagrant/play.upstart.conf"
   config.vm.provision "shell",
     inline: "sudo mv -f /home/vagrant/play.upstart.conf /etc/init/play.conf"
-#  config.vm.provision "shell", path: "run_gtfs_editor.sh", run: "always", privileged: false
+  config.vm.provision "shell", inline: "sudo start play"
 
   config.trigger.after :up do
     run "open http://localhost:9000"
