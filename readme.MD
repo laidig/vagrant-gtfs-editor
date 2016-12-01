@@ -1,4 +1,4 @@
- A Vagrant environment for Conveyal's GTFS Editor
+ A Vagrant environment for [Conveyal's](http://conveyal.com/) [GTFS Editor](https://github.com/conveyal/gtfs-editor)
 
 This Vagrantfile:
 
