@@ -1,12 +1,18 @@
  A Vagrant environment for [Conveyal's](http://conveyal.com/) [GTFS Editor](https://github.com/conveyal/gtfs-editor)
 
+# Why should I use this? 
+The GTFS Editor works reasonably well, but has a quirk in that it relies on the 
+non-current Java version 7, which will be not supported in the near future. Due to a history of [vulnerabilities](https://krebsonsecurity.com/2016/01/oracle-pushes-java-fix-patch-it-or-pitch-it/), running an unsupported Java version is not recommended. 
+
+Vagrant offers a way to quickly and automatically set up a virtual machine environment to run this software only when necessesary.
+
 This Vagrantfile:
 
 * Provisions an Ubuntu 14.04 32 bit VM (the last LTS release with Java 7) with 2GB ram,
 * Sets up a swapfile,
-* Installs Java, git, and unzip as root,
-* Clones the gtfs-editor repository,
-* Installs Play Framework 1.2.X,
+* Installs Java and unzip,
+* Downloads the gtfs-editor,
+* Installs Play Framework 1.2.6,
 * Installs gtfs-editor's dependencies, and _finally_
 * Runs the gtfs-editor such that it is accessible from your host computer at localhost:9000
 

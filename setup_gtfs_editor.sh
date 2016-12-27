@@ -1,9 +1,12 @@
-wget -q -nc https://downloads.typesafe.com/play/1.2.6.2/play-1.2.6.2.zip
-unzip -q -u play-1.2.6.2.zip
+wget -nc https://downloads.typesafe.com/play/1.2.6.2/play-1.2.6.2.zip
+unzip -u play-1.2.6.2.zip
 
-GIT_TRACE=2 git clone https://github.com/conveyal/gtfs-editor.git
+wget -O master.zip https://github.com/conveyal/gtfs-editor/archive/master.zip
+unzip -u master.zip
 
-cd gtfs-editor
+ls -hal
+
+cd gtfs-editor-master
 mkdir public/data/
 cp conf/application.conf.template conf/application.conf
 
