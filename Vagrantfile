@@ -13,12 +13,30 @@ if not plugins_to_install.empty?
   end
 end
 
+module OS
+	def OS.windows?
+		(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+	end
+
+	def OS.mac?
+		(/darwin/ =~ RUBY_PLATFORM) != nil
+	end
+
+	def OS.unix?
+		!OS.windows?
+	end
+
+	def OS.linux?
+		OS.unix? and not OS.mac?
+	end
+end
+
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  config.vm.box = "ubuntu/trusty32"
+  config.vm.box = "bento/ubuntu-14.04-i386"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -43,7 +61,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "sudo start play"
 
   config.trigger.after :up do
-    run "open http://localhost:9000"
+    if OS.mac?
+      run "open http://localhost:9000"
+    else if OS.linux? || OS.unix?
+      run "xdg-open http://127.0.0.1:9000"
+    end
+    end
   end
 
 end
