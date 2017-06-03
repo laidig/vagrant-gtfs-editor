@@ -1,7 +1,7 @@
-wget -nc --quiet https://downloads.typesafe.com/play/1.2.6.2/play-1.2.6.2.zip
+wget -nc --quiet --progress=bar:force https://downloads.typesafe.com/play/1.2.6.2/play-1.2.6.2.zip
 unzip -u play-1.2.6.2.zip
 
-wget -O master.zip --quiet https://github.com/conveyal/gtfs-editor/archive/master.zip
+wget -O master.zip --quiet --progress=bar:force https://github.com/conveyal/gtfs-editor/archive/master.zip
 unzip -u master.zip
 
 ls -hal
